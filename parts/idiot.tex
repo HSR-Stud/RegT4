@@ -47,10 +47,11 @@
 		}
 \end{figure}
 
-\begin{table} \centering
-	\[
+A few useful trigonometric identities:
+\[
 	\cos^2(x) + \sin^2(x) = 1 \quad \cosh^2(x) - \sinh^2(x) = 1
-	\]
+\]
+\begin{center}
   \begin{tabular}{>{\(}l<{\)} @{\(\;=\;\)} >{\(}r<{\)}   >{\(}l<{\)} @{\(\;=\;\)} >{\(}r<{\)} }
     \toprule
     \cos(\alpha + 2\pi) & \cos(\alpha) & \sin(\alpha + 2\pi) & \sin(\alpha) \\
@@ -68,25 +69,18 @@
     \tan(2\alpha) & \multicolumn{3}{l}{\((2\tan\alpha)(1 + \tan^2\alpha)^{-1}\)} \\
     \bottomrule
   \end{tabular}
-	\caption{
-		A few useful trigonometric identities.
-	}
-\end{table}
+\end{center}
 
-\begin{table} \centering
-	\begin{alignat*}{3}
-		(af)' &= af' &\quad&& (u(v))' &= u'(v)v' \\
-		(uv)' &= u'v + uv' &\quad&& \left(\frac{u}{v}\right)' &= \frac{u'v-uv'}{v^2} \\
-		\left(\sum u_i\right)' &= \sum u'_i &\quad&& (\ln u)' &= \frac{u'}{u} \\
-		(f^{-1})' &= \frac{1}{f'(f^{-1}(x))} \\
-	\end{alignat*}
-	\caption{
-		Rules for differentiation, \(f, u, v\) are differentiable functions of \(x\).
-	}
-\end{table}
+Rules for differentiation, \(f, u, v\) are differentiable functions of \(x\):
+\begin{alignat*}{3}
+	(af)' &= af' &\quad&& (u(v))' &= u'(v)v' \\
+	(uv)' &= u'v + uv' &\quad&& \left(\frac{u}{v}\right)' &= \frac{u'v-uv'}{v^2} \\
+	\left(\sum u_i\right)' &= \sum u'_i &\quad&& (\ln u)' &= \frac{u'}{u} \\
+	(f^{-1})' &= \frac{1}{f'(f^{-1}(x))} \\
+\end{alignat*}
 
-
-\begin{table} \centering
+Integration rules, \(f, u, v\) are integrable functions of \(x\):
+\begin{center}
   \setlength\extrarowheight{7pt}
   \begin{tabularx}{\linewidth}{>{\itshape}p{.27\linewidth} >{\(\displaystyle}X<{\)}}
     \toprule
@@ -102,12 +96,19 @@
     & \sin(x) = \frac{2t}{1+t^2}, ~ \cos(t) = \frac{1-t^2}{1+t^2} \\
     \bottomrule
   \end{tabularx}
-	\caption{
-		Integration rules, \(f, u, v\) are integrable functions of \(x\).
-	}
-\end{table}
+\end{center}
 
-\begin{table} \centering
+A few integrals:
+\begin{align*}
+  \int \ln x \,dx &= x\ln x - x + C \\
+  \int \sin^2 ax \,dx &= \frac{x}{2} - \frac{\sin 2ax}{4a} +C\\
+  \int xe^{ax} \,dx &= \frac{e^{ax}}{a^2} (ax - 1) +C \\
+  \int x^2 e^{ax} \,dx &= e^{ax}\left(\frac{x^2}{a} - \frac{2x}{a^2} + \frac{2}{a^3}\right) +C \\
+  \int e^{ax} \sin bx \,dx &= \frac{e^{ax}}{a^2 + b^2} (a\sin bx - b\cos bx) +C
+\end{align*}
+
+Some useful derivatives and integrals:
+\begin{center}
   \begin{tabularx}{\linewidth}{>{\(}l<{\)} >{\(}X<{\)} >{\(}l<{\)} >{\(}l<{\)}}
     \toprule
     f & f' & f & f'\\
@@ -124,15 +125,4 @@
     \arcsinh x & 1/\sqrt{1+x^2} & \arccosh x & 1/\sqrt{x^2 - 1} \\
     \bottomrule
   \end{tabularx}
-	\caption{
-		Some useful derivatives and integrals.
-	}
-\end{table}
-
-\begin{align*}
-  \int \ln x \,dx &= x\ln x - x + C \\
-  \int \sin^2 ax \,dx &= \frac{x}{2} - \frac{\sin 2ax}{4a} +C\\
-  \int xe^{ax} \,dx &= \frac{e^{ax}}{a^2} (ax - 1) +C \\
-  \int x^2 e^{ax} \,dx &= e^{ax}\left(\frac{x^2}{a} - \frac{2x}{a^2} + \frac{2}{a^3}\right) +C \\
-  \int e^{ax} \sin bx \,dx &= \frac{e^{ax}}{a^2 + b^2} (a\sin bx - b\cos bx) +C
-\end{align*}
+\end{center}

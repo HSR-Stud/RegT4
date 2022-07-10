@@ -27,6 +27,20 @@ In practice sampling means using an analog to digital converter (ADC), but mathe
 
 The converse operation, which is done with a digital to analog converter (DAC), is represented in many ways depending on the type of reconstruction. The simplest reconstruction is the zero order hold (ZOH) reconstruction, which keeps the signal fixed at the value of the last digital sample until the new one comes.
 
+\subsubsection{Choosing \(T\) Empirically}
+
+\todo{Stuff from skript p. 230, parameters from Takahashi et al.}
+
+\begin{figure}
+	\centering
+	\skelfig[width = .9\linewidth, height = 3cm]
+	\vskip 1mm
+	\skelfig[width = .9\linewidth, height = 3cm]
+	\caption{
+		Measurements to choose \(T\) empirically.
+	}
+\end{figure}
+
 \subsection{Indirect Design}
 
 In the indirect design we create a controller in the continuous time domain and then discretize it (see figure \ref{fig:direct-vs-indirect}). This is okay as long as the sampling theorem is satisfied.
@@ -37,16 +51,40 @@ Thus, given a plant with transfer function \(G_p(s)\) we create a continuous tim
 	s & = \frac{z - 1}{Tz}               & z & = \frac{1}{1 - sT}      && \text{(Forward)}, \\
 	s & = \frac{2}{T}\frac{z - 1}{z + 1} & z & = \frac{2 + sT}{2 - sT} && \text{(Tustin)}.
 \end{align*}
-The last one (Tustin) is the most popular. To obtain the discretized controller transfer function \(\bar{G}_c(z)\) we substitute \(s\) with the chosen approximation (for example Tustin):
+The last one (Tustin) is the most popular. To obtain the discretized controller transfer function \(\hat{G}_c(z)\) we substitute \(s\) with the chosen approximation (for example Tustin):
 \[
-	\bar{G}_c(z) = G_c \left(s = \frac{2}{T} \frac{z - 1}{z + 1}\right).
+	\hat{G}_c(z) = G_c \left(s = \frac{2}{T} \frac{z - 1}{z + 1}\right).
 \]
 
+\subsection{ZOH Discretization (Direct Design)}
 
-\subsection{Direct Design}
+\subsubsection{Discretization of a Transfer Function}
 
-\subsubsection{ZOH Discretization}
+In the direct design the plant's continuous time model \(G_p(s)\) is discretized. If we assume that the DAC is a ZOH, when the input is a discrete Dirac impulse in continuous time it becomes a rectangle of length \(T\):
+\[
+	u(t) = \varepsilon(t) - \varepsilon(t - T)
+	\leadsto U(s) = \frac{1 - e^{-sT}}{s}.
+\]
+Then we compute the output of the system to this input in continuous time \(U(s)G_p(s)\), inverse Laplace transform it, and then sample it in the time domain. By taking the \(z\) transform of the result we obtain a discretized transfer function 
+\[
+	\hat{G}_p(z) = \left( 1 + z^{-1} \right) \ztr \left\{
+		\left( \laplace^{-1} \left\{
+			\frac{G(s)}{s} \right\}
+		\right) \Bigg |_{t = kT}
+	\right\}.
+\]
+
+\subsubsection{Discretization of a State Space Model}
+
+\todo{Stuff from skript p. 250.}
 
 \subsubsection{Root Locus Method}
 
+\todo{Stuff from skript p. 254.}
+
 \subsection{Discrete State Space}
+
+\todo{Stuff from skript p. 244.}
+
+\subsection{Deadbeat Controller Design}
+\todo{Stuff from skript p. 256.}
