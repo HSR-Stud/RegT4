@@ -1,0 +1,110 @@
+% !TeX program = xelatex
+% !TeX encoding = utf8
+% !TeX root = RegT4.tex
+% vim: ts=2 sw=2 spell:
+
+%% TODO: publish to CTAN
+\documentclass[margin=small]{tex/hsrzf}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Packages
+
+%% Custom packages
+\usepackage{tex/hsrstud}
+\usepackage{tex/docmacros}
+\usepackage{tex/regtec}
+
+%% Language configuration
+\usepackage{polyglossia}
+\setdefaultlanguage{english}
+
+%% License configuration
+\usepackage[
+type={CC},
+modifier={by-nc-sa},
+version={4.0},
+]{doclicense}
+
+%% Placeholders
+\usepackage{skeldoc}
+
+%% Pretty tables
+\usepackage{xltabular}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{array}
+\usepackage{float}
+
+%% Pretty drawings
+\usepackage{tikz}
+\usetikzlibrary{
+	calc, matrix
+}
+
+%% Landscape pages
+\usepackage{pdflscape}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Metadata
+
+\course{Electrical Engineering}
+\module{RegT4}
+\semester{Spring Semester 2022}
+
+\authoremail{naoki.pross@ost.ch}
+\author{\textsl{Naoki Pross et al.} -- \texttt{\theauthoremail}}
+
+% did someone help you with this work?
+\contributors{
+  Naoki Pross.
+}
+
+\title{\texttt{\themodule} -- Modern Control Engineering}
+\date{\thesemester}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Document
+
+\begin{document}
+
+% use roman numberals for introductiory pages
+\pagenumbering{roman}
+
+\maketitle
+
+% \begin{abstract}
+% \end{abstract}
+
+% show the names of the people who contributed to this document.
+\section*{Contributors}
+
+The following students have either directly or indirectly contributed to this work: \thecontributors
+
+\section*{License}
+\doclicenseThis
+
+\tableofcontents
+
+% actual content
+\clearpage
+\twocolumn
+
+\setcounter{page}{1}
+\pagenumbering{arabic}
+
+\input{parts/ssmodel}
+\input{parts/sscontrol}
+\input{parts/discrete}
+
+\appendix
+\input{parts/linalg}
+\input{parts/vanalysis}
+\input{parts/laplace}
+\input{parts/ztransform}
+\input{parts/idiot}
+
+\onecolumn
+\input{parts/elements}
+
+\end{document}

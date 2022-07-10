@@ -1,0 +1,215 @@
+% !TeX root = ../RegT4.tex
+% vim: ts=2 sw=2 spell:
+
+\section{Linear Algebra}
+
+% \subsection{Matrix Multiplication}
+
+\subsection{Determinant}
+
+The determinant is a measure of how the unit square (\(n = 2\)), cube (\(n = 2\)) or hypercube (\(n > 3\)) is scaled by the linear transformation. The determinant of a \(2 \times 2\) matrix is computed using the ``fish rule'':
+\[
+	\det
+	\begin{bmatrix}
+		a & b \\
+		c & d
+	\end{bmatrix}
+	=
+	ad - bc.
+\]
+By hand, for a \(3 \times 3\) matrix, Sarrus' rule is probably the fastest method:
+\[
+	\det
+	\underbrace{
+		\begin{bmatrix}
+			a & b & c \\
+			d & e & f \\
+			g & h & i
+		\end{bmatrix}
+	}_{\mx{A}}
+	\leadsto
+	\begin{bmatrix}
+		\begin{tikzpicture}[
+				outer sep = 0,
+				inner sep = 2pt,
+			]
+			\matrix (m) [
+				matrix of nodes, row sep = 3pt, column sep = 5pt,
+				nodes = {
+					font = \itshape,
+				}
+			] {
+				a & b & c & |[gray]| a & |[gray]| b \\
+				d & e & f & |[gray]| d & |[gray]|   \\
+				g & h & i & |[gray]| g & |[gray]| h \\
+			};
+			\begin{scope}[
+					line width = 7pt, opacity = .2, line cap = round,
+				]
+				\draw [red] (m-1-1.center) -- (m-3-3.center);
+				\draw [red] (m-1-2.center) -- (m-3-4.center);
+				\draw [red] (m-1-3.center) -- (m-3-5.center);
+				\draw [blue] (m-1-3.center) -- (m-3-1.center);
+				\draw [blue] (m-1-4.center) -- (m-3-2.center);
+				\draw [blue] (m-1-5.center) -- (m-3-3.center);
+			\end{scope}
+		\end{tikzpicture}
+	\end{bmatrix},
+\]
+the red lines are added, while the blue ones are subtracted:
+\[
+	\det \mx{A} = aei + bfg + cdh - ceg - afh - bdi.
+\]
+
+\subsection{Inverse Matrix}
+
+The inverse of a \(2 \times 2\) matrix is
+\[
+	\begin{bmatrix}
+		a & b \\
+		c & d
+	\end{bmatrix}^{-1}
+	=
+	\frac{1}{ad - bc}
+	\begin{bmatrix}
+		d & -b \\
+		-c & a
+	\end{bmatrix},
+\]
+I remember it as ``transposed on the wrong diagonal and add minuses (and divide by the determinant)''. For bigger matrices, there are the method of Gaussian elimination: 
+\[
+	\begin{bmatrix} \mx{A} \,|\, \mx{I} \, \end{bmatrix}
+		\xrightarrow{\text{Gauss}}
+	\begin{bmatrix} \, \mx{I} \,|\, \mx{A}^{-1} \end{bmatrix},
+\]
+or Cramers' rule \( \mx{A}^{-1} = \adj \mx{A} / \det \mx{A}\).
+
+\subsection{Eigenvalues and Eigenvectors}
+
+The eigenvalue problem is to find the vectors that are unaffected by a matrix \(A\) (up to a scalar factor):
+\[
+	\mx{A} \vec{v} = \lambda \vec{v} \iff (\mx{A} - \lambda \mx{I}) \vec{v} = \vec{0}.
+\]
+There are \(n\) numbers \(\lambda\), the \emph{eigenvalues}, and equally many \emph{eigenvectors} \(\vec{v}\). This problem is solved by first finding the \(\lambda\)'s and then later the eigenvectors.
+
+In the right expression, we need a matrix \(\mx{A} - \lambda \mx{I}\) to move any vector to the origin, this is accomplished by forcing
+\[
+	\det (\mx{A} - \lambda \mx{I}) = 0,
+\]
+and solving for the \(\lambda\)'s. Then to find the eigenvectors we put back each eigenvalue \(\lambda_i\) into the original equation to obtain a system of equations
+\[
+	(\mx{A} - \lambda_i \mx{I}) \vec{v}_i = \vec{0}.
+\]
+This system of equations is solved for the components of \(\vec{v}_i\), and it is overdetermined. This is because there are infinitely many eigenvectors each eigenspace of \(\mx{A}\).
+
+For a \(2 \times 2\) matrix the eigenvalue problem is a parabola, so there is a shortcut:
+\begin{align*}
+	m &= \frac{1}{2} \tr \mx{A}, & p &= \det \mx{A},
+\end{align*}
+then \(\lambda_{1,2} = m \pm \sqrt{m^2 - p}\).
+
+\subsection{Diagonalization}
+
+If a \(n \times n\) matrix \(\mx{A}\) has \(n\) distinct eigenvalues, it is \emph{diagonalizable}. To diagonalize \(\mx{A}\), first we compute the eigenvalues \(\lambda_1, \ldots, \lambda_n\) and the eigenvectors \(\vec{v}_1, \ldots, \vec{v}_n\), then a matrix is formed by using the eigenvectors as rows:
+\[
+	\mx{T} = \begin{bmatrix}
+		\vec{v}_1 & \vec{v}_2 & \dots & \vec{v}_n
+	\end{bmatrix}.
+\]
+This matrix is then used for a change of bases into the eigenbasis of \(\mx{A}\), where it is a diagonal matrix:
+\[
+	\mx{\Lambda} = \mx{T} \mx{A} \mx{T}^{-1} = \begin{bmatrix}
+		\lambda_1 \\
+		& \ddots \\
+		& & \lambda_n
+	\end{bmatrix}.
+\]
+
+\subsection{Jordan Normal Form}
+
+\subsection{Caley-Hamilton Theorem}
+
+\subsection{Useful Matrices and Products}
+
+\paragraph{Quadratic Form}
+
+The quadratic product is an expression of the form \(\vec{x}^* \mx{Q} \vec{x}\). Let \(\vec{x} \in \mathbb{C}^{2\times 1}\) be a complex column vector and \(a, b, q\) be complex numbers:
+\[
+	\vec{x}^*
+	\underbrace{
+		\begin{bmatrix}
+			a & q \\ q & b
+		\end{bmatrix}
+	}_{\mx{Q}}
+	\vec{x}
+	=
+	a |x_1|^2 + q(x_1^* x_2 + x_1 x_2^*) + b |x_2|^2.
+\]
+If working only with real numbers:
+\[
+	\vec{x}^\mathsf{T} \mx{Q} \vec{x} = a x_1^2 + 2q x_1 x_2 + b x_2^2.
+\]
+For bigger (real) \(n\) dimensional vectors:
+\[
+	\vec{x}^\mathsf{T} \mx{Q} \vec{x} = \sum_{i,j}^{n^2} Q_{ij} \, x_i x_j.
+\]
+
+\paragraph{Column Row Product}
+
+For two complex numbers \(a\) and \(b\):
+\[
+	\vec{x} =
+	\begin{bmatrix}
+		a \\ b
+	\end{bmatrix}
+	\quad
+	\leadsto
+	\quad
+	\vec{x} \vec{x}^* =
+	\begin{bmatrix}
+		|a|^2 & a b^* \\
+		a^* b & |b|^2
+	\end{bmatrix}.
+\]
+
+\paragraph{Rotation Matrices}
+
+In 2 dimensions:
+\[
+	\mx{R}(\theta) =
+	\begin{bmatrix}
+		\cos \theta & -\sin \theta \\
+		\sin \theta & \cos \theta
+	\end{bmatrix}
+	%,
+	.
+\]
+% while in 3 dimensions:
+% \begin{align*}
+% 	\mx{R}_x(\theta) &=
+% 	\begin{bmatrix}
+% 		1 & 0 & 0 \\
+% 		0 & \cos \theta & -\sin \theta \\
+% 		0 & \sin \theta & \cos \theta  \\
+% 	\end{bmatrix}, \\
+% 	\mx{R}_y(\theta) &=
+% 	\begin{bmatrix}
+% 		\cos \theta & 0 & -\sin \theta \\
+% 		0 & 1 & 0 \\
+% 		\sin \theta & 0 & \cos \theta \\
+% 	\end{bmatrix}, \\
+% 	\mx{R}_z(\theta) &=
+% 	\begin{bmatrix}
+% 		\cos \theta & -\sin \theta & 0 \\
+% 		\sin \theta & \cos \theta & 0 \\
+% 		0 & 0 & 1
+% 	\end{bmatrix}.
+% \end{align*}
+Rotation matrices belong to the special orthogonal group, therefore
+\[
+	\mx{R}\mx{R}^\mathsf{T} = \mx{I}
+	\iff
+	\mx{R}^{-1} = \mx{R}^\mathsf{T}
+	\text{ and }
+	\det \mx{R} = 1.
+\]

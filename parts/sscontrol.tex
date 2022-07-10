@@ -1,0 +1,142 @@
+% !TeX root = ../RegT4.tex
+% vim: ts=2 sw=2 spell:
+
+\section{Control in State Space}
+
+\begin{figure}
+	\centering
+	\resizebox{\linewidth}{!}{
+		\input{figures/tikz/pole-placement}
+	}
+	\caption{
+		Pole placement through the gain matrix \(\mx{K}\).
+		\label{fig:ss-pole-placement}
+	}
+\end{figure}
+
+\subsection{Pole Placement}
+
+\subsubsection{Gain Matrix}
+
+Consider the state space model
+\begin{align*}
+	\dot{\vec{x}}(t) & = \mx{A} \vec{x}(t) + \mx{B} \vec{u}(t), \\
+	\vec{y}(t)       & = \mx{C} \vec{x}(t) + \mx{D} \vec{u}(t),
+\end{align*}
+and assume that we can somehow always know the state \(\vec{x}\). Then we add a feedback loop from the state to the input with the \emph{gain matrix} \(\mx{K}\) (see figure \ref{fig:ss-pole-placement}). This introduces a new term for the desired value \(\vec{r}\) and changes the state space equation to
+\[
+	\dot{\vec{x}} = \left(\mx{A} - \mx{B}\mx{K}\right) \vec{x} + \mx{B}\vec{r}.
+\]
+The addition of \(\mx{K}\) allow to change the eigenvalues of the system matrix and thus move the poles. Therefore, the poles of the new matrix \(\tilde{\mx{A}} := \mx{A} - \mx{B}\mx{K}\) are called the regulator poles. To allow an arbitrary placement of poles the system needs to be completely controllable. Without any additional construction, the gain matrix is basically a proportional controller (German: \textsl{P-Regler}).
+
+% When using the pole placement for stability it is important to keep in mind the following points:
+% \begin{itemize}
+% 	\item All poles must be on the LHP,
+% 	\item All transients should decay fast,
+% 	\item The system should be sufficiently damped, for example by setting \(\zeta > 1/\sqrt{2}\),
+% 	\item \texttt{TODO}.
+% \end{itemize}
+
+\subsubsection{Solve for the Gain Matrix}
+
+Now, if we wish to bring the poles of the closed loop system to the locations \(\mu_1, \mu_2, \ldots, \mu_n\), in the most general case we can use the fact that
+\begin{align*}
+	\det\left(s\mx{I} - \tilde{\mx{A}}\right)
+		&= \det\left(s\mx{I} - \mx{A} + \mx{B}\mx{K}\right) \\
+		&= (s - \mu_1)(s - \mu_2) \cdots (s - \mu_n) \\
+		&= s^n + \alpha_1 s_{n-1} + \dots + \alpha_{n-1} s + \alpha_n,
+\end{align*}
+and solve for the entries of \(\mx{K}\) by comparing coefficients.
+
+If the state space representation is in the diagonal form (decoupled, eigenmodes), then finding \(\vec{K}\) is as simple as solving for the entries of \(\mx{K}\):
+\[
+	\mx{A} - \mx{B} \mx{K} =
+	\underbrace{
+		\begin{bmatrix}
+			\mu_1 \\
+			& \ddots \\
+			& & \mu_n
+		\end{bmatrix}
+	}_{\mx{M}}.
+\]
+Sometimes it is possible to do \(\mx{K} = \mx{B}^{-1} (\mx{A} - \mx{K})\), but more often the system is overdetermined and we are free to choose some entries of \(\mx{K}\) (which is even easier).
+
+If the state space representation is in the controllable canonical form, and 
+\[
+	\mx{K} = \begin{bmatrix} k_1 & k_2 & \ldots & k_n \end{bmatrix}
+\]
+since \(\tilde{\mx{A}} = \mx{A} - \mx{B}\mx{K} = \)
+{\small
+	\[
+		\begin{bmatrix}
+			0 & 1 & 0 & \dots & 0 \\
+			0 & 0 & 1 & \dots & 0 \\
+			\vdots & \vdots & \vdots & \ddots & \vdots \\
+			0 & 0 & 0 & \dots & 1 \\
+			-a_n -k_1 & -a_{n-1} - k_2 & -a_{n-2} - k_3& \dots & -a_1 - k_n
+		\end{bmatrix},
+	\]
+}
+which means that
+\[
+	G(s) = \frac{
+		b_{n-1} s^{n-1} + \dots + b_1 s + b_0
+	}{
+		s^n + (a_{n-1} + k_n) s^{n-1} + \dots + (a_0 + k_1)
+	},
+\]
+the poles are found by comparing the coefficients of the denominator:
+\begin{align*}
+	s^n + (a_{n-1} + k_n) &s^{n-1} + \dots + (a_0 + k_1) \\
+		&= (s - \mu_1)(s - \mu_2) \cdots (s - \mu_n).
+\end{align*}
+
+\subsection{Linear Quadratic Regulator (LQR)}
+
+A problem of the pole placement approach is that it is not always obvious which poles should be moved and where. The \emph{linear quadratic regulator} (LQR) also called \emph{quadratic optimal regulator} solves this problem.
+
+In the LQR design we define a performance index to minimize:
+\[
+	J = \int_0^\infty \left(
+		\vec{x}^* \mx{Q} \vec{x} + \vec{u}^* \mx{R} \vec{u}
+	\right) \, dt,
+\]
+where \(\mx{Q}\) and \(\mx{R}\) are positive definite (or semidefinite) Hermitian or real symmetric matrices. The \(\mx{Q}\) matrix determines the importance of the relative error, whereas the \(\mx{R}\) matrix determines the cost (in energy) of modifying the state.  Since in the pole placement \(\vec{u} = -\mx{K}\vec{x}\) the problem becomes
+\[
+	\argmin_{\mx{K}}
+	\int_0^\infty \vec{x}^* \left(
+		\mx{Q} + \mx{K}^* \mx{R} \mx{K}
+	\right) \vec{x} \, dt.
+\]
+Then, the expression can be further developed by using the fact that
+\[
+	\vec{x}(t) = e^{(\mx{A} - \mx{B}\mx{K}) t} \vec{x}(0),
+\]
+which when substituted into the previous expression gives
+\[
+	\vec{x}(0)^* \underbrace{\int_0^\infty \left[
+			e^{(\mx{A} - \mx{B}\mx{K}) t}
+		\right]^* \left(
+			\mx{Q} + \mx{K}^* \mx{R} \mx{K}
+		\right) e^{(\mx{A} - \mx{B}\mx{K}) t}
+		\, dt}_{\mx{S}(\mx{K})}
+	\, \vec{x}(0).
+\]
+The minimization problem is completed by computing
+\[
+	\text{minimize } J \iff
+	0 = \frac{\partial J}{\partial K_{ij}} =
+	\vec{x}^*(0) \frac{\partial \mx{S}}{\partial K_{ij}} \vec{x}(0).
+\]
+It is possible to show that the resulting optimal gain matrix is
+\[
+	\mx{K} = \mx{R}^{-1} \mx{B}^* \mx{S}.
+\]
+
+\subsection{PI-Control}
+
+\subsection{Observer}
+
+\subsection{\texttt{MATLAB} Reference}
+
+\subsubsection{Solve for the Gain Matrix}

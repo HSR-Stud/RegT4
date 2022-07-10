@@ -1,0 +1,161 @@
+%%
+%% This is file `regtec.sty',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% regtec.dtx  (with options: `package')
+%%  regtec: TikZ macros for RegT
+%%  Author: Nao Pross
+%%  E-mail: np@0hm.ch
+%% License: Released under the LaTeX Project Public License v1.3c or later
+%%     See: http://www.latex-project.org/lppl.txt
+%% 
+\NeedsTeXFormat{LaTeX2e}[1999/12/01]
+\ProvidesPackage{regtec}
+    [2021/08/04 v1.00 TikZ macros for RegT]
+\RequirePackage{tikz}
+\usetikzlibrary{calc}
+\usetikzlibrary{positioning}
+\tikzset{
+  rtsplit/.style = {
+    circle,
+    very thick,
+    draw = black,
+    fill = lightgray,
+    inner sep = 1mm,
+    outer sep = 1mm,
+    minimum size = 3mm,
+  },
+  rtbox/.style = {
+    very thick,
+    draw = black,
+    fill = white,
+    inner sep = 2mm,
+    outer sep = 1mm,
+    minimum width = 12mm,
+    minimum height = 8mm,
+  },
+  rtsum/.style = {
+    circle,
+    very thick,
+    draw = black,
+    fill = white,
+    inner sep = 1mm,
+    outer sep = 1mm,
+    minimum size = 3mm,
+  },
+  rtprop/.style = {
+    rtbox,
+    path picture = {
+      \draw[very thick]
+        ($(path picture bounding box.north west) - (0,.2)$)
+        --
+        ($(path picture bounding box.north east) - (0,.2)$);
+    }
+  },
+  rtint/.style = {
+    rtbox,
+    path picture = {
+      \draw[very thick] (path picture bounding box.south west)
+        -- (path picture bounding box.north east);
+    }
+  },
+  rtdiff/.style = {
+    rtbox,
+    path picture = {
+      \draw[very thick]
+        ($(path picture bounding box.north west) + (.2,0)$)
+        |-
+        ($(path picture bounding box.south east) + (0,.2)$);
+    },
+  },
+  rtdelay/.style = {
+    rtbox,
+    path picture = {
+      \draw[very thick]
+        ($(path picture bounding box.south west) + (.2,0)$)
+        |-
+        ($(path picture bounding box.north east) - (0,.2)$);
+    },
+  },
+  rtpt1/.style = {
+    rtbox,
+    path picture = {
+      \draw[very thick]
+        (path picture bounding box.south west)
+        to[out = 70, in = 180]
+        ($(path picture bounding box.north east) - (0,.2)$);
+    },
+  },
+  rtdt1/.style = {
+    rtbox,
+    path picture = {
+      \draw[very thick]
+        (path picture bounding box.north west)
+        to[out = -70, in = 180]
+        ($(path picture bounding box.south east) + (0,.2)$);
+    },
+  },
+  rtpt2/.style = {
+    rtbox,
+    path picture = {
+      \path (path picture bounding box.south west)
+         -- ++(.3,.7)  node (P1) {}
+         -- ++(.2,-.3) node (P2) {}
+         -- ++(.2,.2)  node (P3) {}
+         -- ++(.2,-.2) node (P4) {}
+         -- ++(.2,.2)  node (P5) {}
+         -- ++(.1,-.1) node (P6) {};
+      \draw[very thick]
+        (path picture bounding box.south west)
+        .. controls (P1) .. ($(P1)!.5!(P2)$)
+        .. controls (P2) .. ($(P2)!.5!(P3)$)
+        .. controls (P3) .. ($(P3)!.5!(P4)$)
+        .. controls (P4) .. ($(P4)!.5!(P5)$)
+        .. controls (P5) .. ($(P5)!.5!(P6)$)
+        .. controls (P6) .. ++(.2,0)
+        ;
+    },
+  },
+  rtpi/.style = {
+    rtbox,
+    path picture = {
+      \draw[very thick]
+        ($(path picture bounding box.south west) + (.2,0)$)
+        -- ++(0,.3) --
+        ($(path picture bounding box.north east) - (0,.2)$);
+    },
+  },
+}
+\newenvironment{rtdiagram}{%
+  \begin{tikzpicture}
+}{%
+  \end{tikzpicture}
+}
+\iffalse
+\newcommand{\dummyMacro}{}
+\newenvironment{dummyEnv}{%
+}{%
+}
+\fi
+%% 
+%% Copyright (C) 2021 by Nao Pross <np@0hm.ch>
+%% 
+%% This work may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License (LPPL), either
+%% version 1.3c of this license or (at your option) any later
+%% version.  The latest version of this license is in the file:
+%% 
+%% http://www.latex-project.org/lppl.txt
+%% 
+%% This work is "maintained" (as per LPPL maintenance status) by
+%% Nao Pross.
+%% 
+%% This work consists of the file regtec.dtx and a Makefile.
+%% Running "make" generates the derived files README, regtec.pdf and regtec.sty.
+%% Running "make inst" installs the files in the user's TeX tree.
+%% Running "make install" installs the files in the local TeX tree.
+%% 
+%%
+%% End of file `regtec.sty'.

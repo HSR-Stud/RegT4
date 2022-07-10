@@ -1,0 +1,66 @@
+% !TEX root = ../Main.tex
+% !TEX program = xelatex
+% !TEX encoding = UTF-8
+% vim:ts=2 sw=2 et tw=78:
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{tex/docmacros}[2022/07/09 v0.1 Document Macros]
+
+\RequirePackage{mathtools}
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+\RequirePackage{bm}
+
+% ---------------------------------------------------------------------------
+% Mathematics
+
+% Expectation
+% \DeclareMathOperator{\expectation}{E}
+% \newcommand{\E}[1]{\expectation \left\{#1\right\}}
+
+% Variance
+% \DeclareMathOperator{\variance}{Var}
+% \newcommand{\Var}[1]{\variance \left\{#1\right\}}
+
+% Probability
+% \DeclareMathOperator{\probability}{Pr}
+% \renewcommand{\Pr}[1]{\probability \left\{#1\right\}}
+% \newcommand{\given}{\,|\,}
+
+% Special functions
+\DeclareMathOperator{\sinc}{sinc}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+\DeclareMathOperator{\arcsinh}{\mathrm{arcsinh}}
+\DeclareMathOperator{\arccosh}{\mathrm{arccosh}}
+\DeclareMathOperator{\arctanh}{\mathrm{arctanh}}
+
+
+% Matrix stuff
+\DeclareMathOperator{\adj}{adj}
+\DeclareMathOperator{\tr}{tr}
+
+
+% Redefine real and imaginary parts of a complex numbers to look normal
+\renewcommand{\Re}[1]{\mathrm{Re} \left\{#1\right\}}
+\renewcommand{\Im}[1]{\mathrm{Im} \left\{#1\right\}}
+
+% Linear operators
+\DeclareMathOperator{\laplace}{\mathcal{L}}
+\DeclareMathOperator{\fourier}{\mathcal{F}}
+\DeclareMathOperator{\ztr}{\mathcal{Z}}
+% \DeclareMathOperator{\hilbert}{\mathcal{H}}
+
+% ---------------------------------------------------------------------------
+% Typesetting
+
+% Custom IEEE style references for figures and tables
+\newcommand{\figref}[1]{Fig.~\ref{#1}}
+\newcommand{\tabref}[1]{Tab.~\ref{#1}}
+\newcommand{\chpref}[1]{Chapter~\ref{#1}}
+\newcommand{\secref}[1]{Section~\ref{#1}}
+\newcommand{\lstref}[1]{Listing \ref{#1}}
+
+% TODOs
+\newcommand{\todo}[1]{\textcolor{red!80!black}{\ttfamily \itshape [TODO: #1]}}

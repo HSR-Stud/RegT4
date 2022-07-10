@@ -1,0 +1,33 @@
+% !TeX root = ../RegT4.tex
+% vim: ts=2 sw=2 spell:
+
+\section{Vector Analysis}
+
+\subsection{Gradient Vector}
+
+The \emph{gradient} of a function \(f(\vec{x}), \vec{x}\in\mathbb{R}^m\) is a column vector containing the partial derivatives in each direction.
+\[
+\grad f (\vec{x}) = \sum_{i=1}^m \partial_{x_i} f(\vec{x}) \vec{e}_i
+	= \begin{pmatrix}
+		\partial_{x_1} f(\vec{x}) \\
+		\vdots \\
+		\partial_{x_m} f(\vec{x}) \\
+	\end{pmatrix}
+\]
+The gradient vector always points towards \emph{the direction of steepest ascent}, and thus is always perpendicular to contour lines.
+
+\subsection{Jacobian Matrix}
+
+The \emph{Jacobian} \(\mx{J}_f\) (sometimes written as \(\frac{\partial \vec{f}}{\partial \vec{x}}\)) of a function \(\vec{f}: \mathbb{R}^m \to \mathbb{R}^n\) is a matrix \(\in\mathbb{R}^{m\times n}\) whose entry at the \(i\)-th row and \(j\)-th column is given by \((\mx{J}_f)_{i,j} = \partial_{x_j} f_i\), so
+\[
+	\mx{J}_f = \begin{pmatrix}
+			\partial_{x_1} f_1 & \cdots & \partial_{x_m} f_1 \\
+			\vdots & \ddots & \vdots \\
+			\partial_{x_1} f_n & \cdots & \partial_{x_m} f_n \\
+		\end{pmatrix}
+	= \begin{pmatrix}
+			(\grad f_1)^t \\
+			\vdots \\
+			(\grad f_m)^t \\
+		\end{pmatrix}
+\]

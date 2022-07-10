@@ -1,0 +1,49 @@
+% vim: ts=2 sw=2 et:
+\begin{tikzpicture}[very thick]
+  \matrix[
+    column sep = 6mm, row sep = 4mm,
+  ]{
+    &&&& \node[rtbox] (D) {\(\mathbf{D}\)}; \\
+
+    \node[rtsum] (R) {};
+      & \node[rtsplit] (U) {};
+        \node[below = 0mm of U] {\(\mathbf{u}\)};
+      & \node[rtbox] (B) {\(\mathbf{B}\)};
+      & \node[rtsum] (dX) {};
+        \node[above = 0mm of dX] {\(\dot{\mathbf{x}}\)};
+      & \node[rtint] (I) {};
+      & \node[rtsplit] (X) {};
+        \node[above = 0mm of X] {\(\mathbf{x}\)};
+      & \node[rtbox] (C) {\(\mathbf{C}\)};
+      & \node[rtsum] (Y) {}; \\[1mm]
+
+    &&&& \node[rtbox] (A) {\(\mathbf{A}\)};
+      & \node[rtsplit] (Xb) {}; \\
+    &&&& \node[rtbox] (K) {\(\mathbf{K}\)}; \\
+  };
+
+  \draw[<-] (R) node[left = 3mm, yshift = -2mm] {\(+\)} -- ++(-1,0) node[left] {\(\mathbf{r}\)};
+
+  \draw[->]
+    (R) -- (U)
+    (U) edge (B)
+    (B) edge (dX)
+    (dX) edge (I)
+    (I) -- (X)
+    (X) edge (C)
+    (C) edge (Y)
+    (Y) -- ++(1,0) node[right] {\(\mathbf{y}\)}
+  ;
+
+  \draw[->] (U) |- (D);
+  \draw[->] (D) -| (Y);
+
+  \draw[->]
+    (X) edge (Xb)
+    (Xb) edge (A)
+    (Xb) |- (K);
+  \draw[->] (A) -| (dX);
+  \draw[->] (K) -| (R) node[below = 3mm, xshift = -2mm] {\(-\)};
+
+
+\end{tikzpicture}

@@ -1,0 +1,37 @@
+\begin{tikzpicture}[very thick]
+  \matrix[
+    column sep = 6mm, row sep = 4mm,
+  ]{
+    &&& \node[rtbox] (D) {\(\mathbf{D}\)}; \\
+
+    \node[rtsplit] (U) {};
+      & \node[rtbox] (B) {\(\mathbf{B}\)};
+      & \node[rtsum] (dX) {};
+        \node[above = 0mm of dX] {\(\dot{\mathbf{x}}\)};
+      & \node[rtint] (I) {};
+      & \node[rtsplit] (X) {};
+        \node[above = 0mm of X] {\(\mathbf{x}\)};
+      & \node[rtbox] (C) {\(\mathbf{C}\)};
+      & \node[rtsum] (Y) {}; \\[1mm]
+
+    &&& \node[rtbox] (A) {\(\mathbf{A}\)}; \\
+  };
+
+  \draw[->]
+    (U) -- ++(-1,0) node[left] {\(\mathbf{u}\)}
+    (U) edge (B)
+    (B) edge (dX)
+    (dX) edge (I)
+    (I) -- (X)
+    (X) edge (C)
+    (C) edge (Y)
+    (Y) -- ++(1,0) node[right] {\(\mathbf{y}\)}
+  ;
+
+  \draw[->] (U) |- (D);
+  \draw[->] (D) -| (Y);
+
+  \draw[->] (X) |- (A);
+  \draw[->] (A) -| (dX);
+
+\end{tikzpicture}
