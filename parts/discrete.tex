@@ -3,9 +3,45 @@
 
 \section{Discrete-Time Modelling}
 
+\begin{figure}
+	\centering
+	\input{figures/tikz/discrete-design}
+	\caption{
+		Direct vs indirect design. In general \(G_{c,i}(z) \neq G_{c,d}(z)\).
+		\label{fig:direct-vs-indirect}
+	}
+\end{figure}
+
 \subsection{Sampling}
 
+In discrete time the system works with sampled signals. The sampling time \(T\) must be chosen such that the sampling theorem (Nyquist Shannon) is satisfied, i.e.
+\[
+	\omega_s = \frac{2\pi}{T} \geq 2 \omega_r,
+\]
+where \(\omega_r\) is the is the highest frequency component in the reference signal \(r(t)\).
+
+In practice sampling means using an analog to digital converter (ADC), but mathematically the sampling is done through a multiplication with a Dirac comb
+\[
+	\sum_k \delta(t - kT).
+\]
+
+The converse operation, which is done with a digital to analog converter (DAC), is represented in many ways depending on the type of reconstruction. The simplest reconstruction is the zero order hold (ZOH) reconstruction, which keeps the signal fixed at the value of the last digital sample until the new one comes.
+
 \subsection{Indirect Design}
+
+In the indirect design we create a controller in the continuous time domain and then discretize it (see figure \ref{fig:direct-vs-indirect}). This is okay as long as the sampling theorem is satisfied.
+
+Thus, given a plant with transfer function \(G_p(s)\) we create a continuous time controller \(G_c(s)\). Then to discretize it we can choose how to approximate the integrator element from one of the following 3 options:
+\begin{align*}
+	s & = \frac{z - 1}{T}                & z & = 1 + sT                && \text{(Euler)},   \\
+	s & = \frac{z - 1}{Tz}               & z & = \frac{1}{1 - sT}      && \text{(Forward)}, \\
+	s & = \frac{2}{T}\frac{z - 1}{z + 1} & z & = \frac{2 + sT}{2 - sT} && \text{(Tustin)}.
+\end{align*}
+The last one (Tustin) is the most popular. To obtain the discretized controller transfer function \(\bar{G}_c(z)\) we substitute \(s\) with the chosen approximation (for example Tustin):
+\[
+	\bar{G}_c(z) = G_c \left(s = \frac{2}{T} \frac{z - 1}{z + 1}\right).
+\]
+
 
 \subsection{Direct Design}
 
