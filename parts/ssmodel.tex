@@ -209,13 +209,13 @@ A system is said to be \emph{controllable} at time \(t_0\) if it is possible my 
 		\mx{B} & \mx{A}\mx{B} & \cdots & \mx{A}^{n-1}\mx{B}
 	\end{bmatrix}.
 \]
-If \(\mx{Q}_c\) is singular (has linearly dependent rows), or equivalently its rank is not \(n\), or (also equivalently) \(\det \mx{Q}_c = 0\), then the system is not totally state controllable.
+If \(\rank \mx{Q}_c < n\) (has less than \(n\) linearly independent rows), or in the case when \(\mx{Q}_c\) is a square matrix \(\det \mx{Q}_c = 0\), then the system is not totally state controllable.
 
 It is also possible to determine the controllability from the transfer function (or matrix) of a system. It can be shown that if cancellation occurs (German: \textsl{Polkürzung}), then the system cannot be controlled in the direction of the canceled mode.
 
 \subsection{Observability}
 
-In the same (too) abstract spirit as in the controllability: a system is said to be \emph{observable} at time \(t_0\) if, with the system in state \(\vec{x}(t_0)\), it is possible to determine this state from the observation of the output over a finite time interval. The observability can be determined through the \(?\times ?\) \emph{observability matrix}
+In the same (too) abstract spirit as in the controllability: a system is said to be \emph{observable} at time \(t_0\) if, with the system in state \(\vec{x}(t_0)\), it is possible to determine this state from the observation of the output over a finite time interval. The observability can be determined through the \(np \times n\) \emph{observability matrix}
 \[
 	\mx{Q}_o = \begin{bmatrix}
 		\mx{C} \\ \mx{C}\mx{A} \\ \vdots \\ \mx{C}\mx{A}^{n-1}
@@ -223,7 +223,7 @@ In the same (too) abstract spirit as in the controllability: a system is said to
 		\mx{C}^* & \mx{A}^* \mx{C}^* & \cdots & (\mx{A}^*)^{n-1}\mx{C}^*
 	\end{bmatrix},
 \]
-where the asterisk is the conjugate transpose (for real matrices \(\mx{A}^* = \mx{A}^\mathsf{T}\)). The system is observable if \(\mx{Q}\) is a regular matrix.
+where the asterisk is the conjugate transpose (for real matrices \(\mx{A}^* = \mx{A}^\mathsf{T}\)). The system is observable only if \(\rank \mx{Q} \geq n\) (there are at least \(n\) linearly independent rows).
 
 In terms of the transfer function: if cancellation occurs in the transfer function then the canceled mode cannot be observed for the output. In other words, no cancellation is a necessary and sufficient condition for total observability.
 
@@ -235,10 +235,10 @@ A state space model system is stable is the \(\mx{A}\) matrix is positive defini
 
 In this section we assume without loss of generality that the system has a transfer function
 \[
-	\frac{Y(s)}{U(s)} = \frac{
-		b_0 s^n + b_1 s^{n-1} + \cdots + b_{n-1} s + b_n
+	\frac{Y(s)}{U(s)} = d + \frac{
+		b_{n-1} s^{n-1} + b_{n-2} s^{n-2} + \cdots + b_1 s + b_0
 	}{
-		s^n + a_1 s^{n-1} + \cdots + a_{n-1} s + a_n
+		s^n + a_{n-1} s^{n-1} + \cdots + a_1 s + a_0
 	}.
 \]
 
@@ -258,7 +258,7 @@ This form (German: \textsl{Regelungsnormalform}) is important in discussing the 
 			0 & 0 & 1 & \dots & 0 \\
 			\vdots & \vdots & \vdots & \ddots & \vdots \\
 			0 & 0 & 0 & \dots & 1 \\
-			-a_n & -a_{n-1} & -a_{n-2} & \dots & -a_1
+			-a_0 & -a_1 & -a_2 & \dots & -a_{n-1}
 		\end{bmatrix}
 		\begin{bmatrix}
 			x_1 \\ x_2 \\ \vdots \\ x_{n-1} \\ x_n
@@ -269,6 +269,16 @@ This form (German: \textsl{Regelungsnormalform}) is important in discussing the 
 		\end{bmatrix} u.
 	\)
 }
+And the output is
+\[
+	y =
+	\begin{bmatrix}
+		b_0 & \dots & b_{n-1}
+	\end{bmatrix}
+	\vec{x}
+	+ d u
+	.
+\]
 
 \subsubsection{Observable Canonical Form}
 
@@ -293,11 +303,7 @@ This mode is similar to previous form, in fact, the \(\mx{A}\) matrix is the tra
 		\end{bmatrix}
 		+
 		\begin{bmatrix}
-			b_n - a_n b_0 \\
-			b_{n-1} - a_{n-1} b_0 \\
-			\vdots \\
-			b_{2} - a_{2} b_0 \\
-			b_{1} - a_{1} b_0 \\
+			b_0 \\ b_1 \\ \vdots \\ b_{n-2} \\ b_{n-1}
 		\end{bmatrix} u.
 	\)
 }
@@ -323,7 +329,13 @@ An important form is when the \(\mx{A}\) matrix is diagonalized, i.e.
 	+
 	\tilde{\mx{B}}\b{u}.
 \]
-In this representation the state variables are the \emph{eigenstates} of the system, and they are decoupled from each other. Since the diagonal contains the eigenvalues, as noted in the stability section \ref{sec:stability}, they describe the poles of the transfer function \(G(s)\), and therefore the stability of the system.
+In this representation the state variables are the \emph{eigenstates} of the system, and they are decoupled from each other. Since the diagonal contains the eigenvalues, as noted in the stability section \ref{sec:stability}, they describe the poles of the transfer function \(G(s)\), and therefore the stability of the system. In other words
+\[
+	\frac{Y(s)}{U(s)} =
+	\frac{b_1 c_1}{s - \lambda_1} +
+	\frac{b_2 c_2}{s - \lambda_2} + \dots +
+	\frac{b_n c_n}{s - \lambda_{n-1}}.
+\]
 
 \subsubsection{Normal Jordan Form}
 

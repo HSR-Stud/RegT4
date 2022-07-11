@@ -3,7 +3,7 @@
 
 \section{Idiot's section}
 
-\begin{figure} \centering
+\begin{center}%  \centering
     \begin{tikzpicture}[scale=4]
       \draw[gray,dashed] (0,0) --
       node[pos=.7, sloped, above] {\(0\)}
@@ -42,10 +42,10 @@
 
       \draw[black, thick] ({cos(-5)}, {sin(-5)}) arc (-5:100:1);
     \end{tikzpicture}
-		\caption{
-			Useful angles.
-		}
-\end{figure}
+		% \caption{
+		% 	Useful angles.
+		% }
+\end{center}
 
 A few useful trigonometric identities:
 \[
@@ -71,6 +71,11 @@ A few useful trigonometric identities:
   \end{tabular}
 \end{center}
 
+The geometric series has a closed form formula for \(|q| < 1\):
+\[
+	\sum_{k = 0}^\infty q^k = \frac{1}{1 - q}.
+\]
+
 Rules for differentiation, \(f, u, v\) are differentiable functions of \(x\):
 \begin{alignat*}{3}
 	(af)' &= af' &\quad&& (u(v))' &= u'(v)v' \\
@@ -79,33 +84,35 @@ Rules for differentiation, \(f, u, v\) are differentiable functions of \(x\):
 	(f^{-1})' &= \frac{1}{f'(f^{-1}(x))} \\
 \end{alignat*}
 
-Integration rules, \(f, u, v\) are integrable functions of \(x\):
-\begin{center}
-  \setlength\extrarowheight{7pt}
-  \begin{tabularx}{\linewidth}{>{\itshape}p{.27\linewidth} >{\(\displaystyle}X<{\)}}
-    \toprule
-    Linearity & \int k(u + v) = k\left(\int u + \int v\right) \\
-    Partial fraction decomposition& \int \frac{Q}{P_n} \,dx = \sum_{k=1}^n \int \frac{A_k}{x-r_k}\,dx \\
-    Affine transformation & \int f(\lambda x + \ell) \,dx = \frac{1}{\lambda} F(\lambda x + \ell) + C \\
-    Integration by parts & \int u \,dv = uv - \int v \,du \\
-    Power rule \(n \neq -1\)& \int u^n \cdot u' = \frac{u^{n+1}}{n+1} + C \\
-    Logarithm rule & \int \frac{u'}{u} = \ln|u| + C \\
-    \multirow{2}{=}{General substitution \(x = g(u)\)} & \int f(x) \,dx = \int (f\circ g) ~ g' \,du \\
-    & = \int \frac{f \circ g}{(g^{-1})'\circ g} \,du \\
-    \multirow{2}{=}{Universal substitution} & t = \tan(x/2), dx = 2/(1+t^2) dt \\
-    & \sin(x) = \frac{2t}{1+t^2}, ~ \cos(t) = \frac{1-t^2}{1+t^2} \\
-    \bottomrule
-  \end{tabularx}
-\end{center}
+% These were left out because there is not enough space, and no, I don't want smaller margins.
 
-A few integrals:
-\begin{align*}
-  \int \ln x \,dx &= x\ln x - x + C \\
-  \int \sin^2 ax \,dx &= \frac{x}{2} - \frac{\sin 2ax}{4a} +C\\
-  \int xe^{ax} \,dx &= \frac{e^{ax}}{a^2} (ax - 1) +C \\
-  \int x^2 e^{ax} \,dx &= e^{ax}\left(\frac{x^2}{a} - \frac{2x}{a^2} + \frac{2}{a^3}\right) +C \\
-  \int e^{ax} \sin bx \,dx &= \frac{e^{ax}}{a^2 + b^2} (a\sin bx - b\cos bx) +C
-\end{align*}
+% Integration rules, \(f, u, v\) are integrable functions of \(x\):
+% \begin{center}
+%   \setlength\extrarowheight{7pt}
+%   \begin{tabularx}{\linewidth}{>{\itshape}p{.27\linewidth} >{\(\displaystyle}X<{\)}}
+%     \toprule
+%     Linearity & \int k(u + v) = k\left(\int u + \int v\right) \\
+%     Partial fraction decomposition& \int \frac{Q}{P_n} \,dx = \sum_{k=1}^n \int \frac{A_k}{x-r_k}\,dx \\
+%     Affine transformation & \int f(\lambda x + \ell) \,dx = \frac{1}{\lambda} F(\lambda x + \ell) + C \\
+%     Integration by parts & \int u \,dv = uv - \int v \,du \\
+%     Power rule \(n \neq -1\)& \int u^n \cdot u' = \frac{u^{n+1}}{n+1} + C \\
+%     Logarithm rule & \int \frac{u'}{u} = \ln|u| + C \\
+%     \multirow{2}{=}{General substitution \(x = g(u)\)} & \int f(x) \,dx = \int (f\circ g) ~ g' \,du \\
+%     & = \int \frac{f \circ g}{(g^{-1})'\circ g} \,du \\
+%     \multirow{2}{=}{Universal substitution} & t = \tan(x/2), dx = 2/(1+t^2) dt \\
+%     & \sin(x) = \frac{2t}{1+t^2}, ~ \cos(t) = \frac{1-t^2}{1+t^2} \\
+%     \bottomrule
+%   \end{tabularx}
+% \end{center}
+
+% A few integrals:
+% \begin{align*}
+%   \int \ln x \,dx &= x\ln x - x + C \\
+%   \int \sin^2 ax \,dx &= \frac{x}{2} - \frac{\sin 2ax}{4a} +C\\
+%   \int xe^{ax} \,dx &= \frac{e^{ax}}{a^2} (ax - 1) +C \\
+%   \int x^2 e^{ax} \,dx &= e^{ax}\left(\frac{x^2}{a} - \frac{2x}{a^2} + \frac{2}{a^3}\right) +C \\
+%   \int e^{ax} \sin bx \,dx &= \frac{e^{ax}}{a^2 + b^2} (a\sin bx - b\cos bx) +C
+% \end{align*}
 
 Some useful derivatives and integrals:
 \begin{center}

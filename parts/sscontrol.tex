@@ -5,8 +5,8 @@
 
 \begin{figure}
 	\centering
-	\resizebox{\linewidth}{!}{
-		\input{figures/tikz/pole-placement}
+	\resizebox{\linewidth}{!}{%
+		\input{figures/tikz/pole-placement}%
 	}
 	\caption{
 		Pole placement through the gain matrix \(\mx{K}\).
@@ -138,5 +138,16 @@ It is possible to show that the resulting optimal gain matrix is
 \todo{Skript p. 200.}
 
 \subsection{Observer}
+
+\begin{figure}
+	\centering
+	\resizebox{.9\linewidth}{!}{%
+		\input{figures/tikz/observer-full}%
+	}
+	\caption{
+		Full state observer to estimate \(\vec{x}\) for the pole placement matrix \(\mx{K}\).
+		\label{fig:ss-observer}
+	}
+\end{figure}
 
 \todo{Skript p. 203.}

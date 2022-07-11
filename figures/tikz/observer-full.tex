@@ -1,0 +1,82 @@
+% vim: ts=2 sw=2 et:
+\begin{tikzpicture}[very thick]
+  \matrix[
+    column sep = 6mm, row sep = 4mm,
+  ]{
+    && \node[rtbox] (B) {\(\mathbf{B}\)};
+      & \node[rtsum] (dX) {};
+        \node[above = 0mm of dX] {\(\dot{\mathbf{x}}\)};
+      & \node[rtint] (I) {};
+      & \node[rtsplit] (X) {};
+        \node[above = 0mm of X] {\(\mathbf{x}\)};
+      & \node[rtbox] (C) {\(\mathbf{C}\)};
+      & \node[rtsplit] (Y) {}; \\[1mm]
+
+    &&&& \node[rtbox] (A) {\(\mathbf{A}\)}; \\
+
+    \node[rtsplit] (U) {}; &&&& \node[rtbox] (K) {\(-\mathbf{K}\)}; \\
+
+    & \node[rtbox] (OB) {\(\mathbf{B}\)};
+      & \node[rtsum] (OdX1) {};
+      & \node[rtsum] (OdX2) {};
+        \node[above = 0mm of dX] {\(\dot{\tilde{\mathbf{x}}}\)};
+      & \node[rtint] (OI) {};
+      & \node[rtsplit] (OX) {};
+        \node[above right = 0mm of X] {\(\tilde{\mathbf{x}}\)};
+      & \node[rtbox] (OC) {\(\mathbf{C}\)};
+      & \node[rtsum] (OY) {}; \\[1mm]
+
+    &&&& \node[rtbox] (OA) {\(\mathbf{A}\)}; \\
+
+    &&&& \node[rtbox] (Ke) {\(\mathbf{K}_e\)}; \\
+  };
+
+  \begin{scope}[->]
+    % system
+    \draw (U) |- (B);
+    \draw (B) -- (dX);
+    \draw (dX) -- (I);
+    \draw (I) -- (X);
+
+    \draw (X) |- (A);
+    \draw (A) -| (dX);
+
+    \draw (X) -- (C);
+    \draw (C) -- (Y);
+    \draw (Y) -- (OY)
+      node[above = 2.5mm, xshift = -2.5mm] {\(+\)}
+      node[left = 2.5mm, yshift = 2.5mm] {\(-\)};
+
+    % observer
+    \draw (U) |- (OB);
+    \draw (OB) -- (OdX1);
+    \draw (OdX1) -- (OdX2);
+    \draw (OdX2) -- (OI);
+    \draw (OI) -- (OX);
+
+    \draw (OX) |- (OA);
+    \draw (OA) -| (OdX2);
+
+    \draw (OX) |- (K);
+    \draw (K) -- (U);
+
+    \draw (OX) -- (OC);
+    \draw (OC) -- node[midway, below] {\(\tilde{\mathbf{y}}\)} (OY);
+    \draw (OY) |- (Ke);
+    \draw (Ke) -| (OdX1);
+  \end{scope}
+
+  \draw[->] (Y) -- ++(1, 0) node[right] {\(\mathbf{y}\)};
+
+  \begin{scope}[on background layer]
+    \coordinate (SYS) at ($(B.north west) + (-.5, .2)$);
+    \fill[red!20] (SYS) rectangle ($(Y |- A.south east) + (.5, -.1)$);
+
+    \coordinate (OBS) at ($(OB.north west) + (-.5, .2)$);
+    \fill[blue!20] (OBS) rectangle ($(OY |- Ke.south east) + (.5, -.2)$);
+
+    \node[above, red!80!black, anchor = south west] at (SYS) {System};
+    \node[above, blue!80!black, anchor = south west] at (OBS) {Full State Observer};
+  \end{scope}
+
+\end{tikzpicture}

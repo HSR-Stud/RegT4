@@ -31,15 +31,13 @@ The converse operation, which is done with a digital to analog converter (DAC), 
 
 \todo{Stuff from skript p. 230, parameters from Takahashi et al.}
 
-\begin{figure}
-	\centering
-	\skelfig[width = .9\linewidth, height = 3cm]
-	\vskip 1mm
-	\skelfig[width = .9\linewidth, height = 3cm]
-	\caption{
-		Measurements to choose \(T\) empirically.
-	}
-\end{figure}
+% \begin{figure}
+% 	\centering
+% 	\skelfig[width = .9\linewidth, height = 3cm]
+% 	\caption{
+% 		Measurements to choose \(T\) empirically.
+% 	}
+% \end{figure}
 
 \subsection{Indirect Design}
 
@@ -73,6 +71,33 @@ Then we compute the output of the system to this input in continuous time \(U(s)
 		\right) \Bigg |_{t = kT}
 	\right\}.
 \]
+ZOH discretizations for a few common type of plants are listed in table \ref{tab:zoh-plants}.
+
+\begin{table}[h]
+	\centering
+	% \begin{tabularx}{\linewidth}{
+	\renewcommand{\arraystretch}{1.9}
+	\begin{tabular}{
+			>{\(\displaystyle}l<{\)}
+			>{\(\displaystyle}l<{\)}
+			>{\(\displaystyle}l<{\)}
+			>{\(\displaystyle}l<{\)}
+		}
+		\toprule
+		\textbf{Plant } G_p(s) & \textbf{ZOH } \hat{G}_p(z) &
+		\textbf{Plant } G_p(s) & \textbf{ZOH } \hat{G}_p(z) \\
+		\cmidrule(r){1-2} \cmidrule(l){3-4}
+		K                   & \frac{Kz}{z - 1}                       &
+		\frac{1}{s}         & \frac{T}{z - 1}                        \\
+		\frac{1}{s^2}       & \frac{T}{2} \frac{z + 1}{(z - 1)^2}    &
+		\frac{K}{s\tau + 1} & \frac{1 - e^{-T/\tau}}{z - e^{T/\tau}} \\
+		\bottomrule
+	\end{tabular}
+	\caption{
+		ZOH discretization of a few plant types.
+		\label{tab:zoh-plants}
+	}
+\end{table}
 
 \subsubsection{Discretization of a State Space Model}
 
@@ -81,6 +106,17 @@ Then we compute the output of the system to this input in continuous time \(U(s)
 \subsubsection{Root Locus Method}
 
 \todo{Stuff from skript p. 254.}
+
+\subsubsection{Pole Placement Design}
+
+Another way to design a controller is to simply state that the closed \(G_f(z)\) has to have the poles at some determined locations. Then since in a closed feedback loop with a plant \(G_p(z)\) and a controller \(G_c(z)\):
+\[
+	G_f(z) = \frac{G_c(z) G_p(z)}{1 + G_p(z) G_c(z)},
+\]
+by solving for \(G_c(z)\):
+\[
+	G_c(z) = \frac{1}{G_p(z)} \frac{G_f(z)}{1 - G_f(z)}.
+\]
 
 \subsection{Discrete State Space}
 

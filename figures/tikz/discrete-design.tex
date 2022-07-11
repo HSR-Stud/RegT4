@@ -22,7 +22,7 @@
 	\node[left = 10mm, rotate = 90, anchor = center] at (m-2-1) {Controller};
 
 	\draw[thick, ->] (m-1-1) --
-		node[midway, above = 3mm, fill = white, text width = 2cm]
+		node[midway, above = 4mm, fill = white]
 		{Discretize Plant (ZOH)} (m-1-2);
 
 	\draw[thick, ->] (m-1-2) to[out = -90, in = 90] (Gcd);
@@ -30,7 +30,7 @@
 	\draw[thick, ->] (m-1-1) -- (m-2-1);
 
 	\draw[thick, ->] (m-2-1) to[out = 0, in = 180] 
-		node[pos = .7, below = 3mm, fill = white, text width = 2.5cm]
+		node[pos = .7, below = 4mm, fill = white]
 		{Discretize Controller (Tustin)} (Gci);
 
 	\draw[line width = 1mm, red, opacity = .3, ->] (m-1-1) to[out = -90, in = 180]
