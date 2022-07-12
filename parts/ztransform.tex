@@ -5,15 +5,13 @@
 
 \subsection{Definition}
 
-The \(z\)-transform of a sequence \((f_n)\) is defined to be
+The \(z\)-transform of a sequence \((f_n)\) and its inverse transform (sometime written as \(\mathcal{Z}, \mathcal{Z}^{-1}\)) are defined to be
 \[
 	F(z) = \sum_{k = 0}^\infty f_k z^{-k},
-\]
-where \(z\) is a complex number. The inverse transform is
-\[
+	\quad
 	f_n = \frac{1}{2\pi i} \ointctrclockwise_C F(z) z^{n-1} \, dz,
 \]
-where \(C\) is a counterclockwise path encircling the origin and entirely in the region of convergence (ROC).
+where \(z\) is a complex number and \(C\) is a counterclockwise path encircling the origin and entirely in the region of convergence.
 
 \subsection{Relation to the Laplace Transform}
 

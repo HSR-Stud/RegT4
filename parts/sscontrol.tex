@@ -51,15 +51,14 @@ and solve for the entries of \(\mx{K}\) by comparing coefficients.
 If the state space representation is in the diagonal form (decoupled, eigenmodes), then finding \(\vec{K}\) is as simple as solving for the entries of \(\mx{K}\):
 \[
 	\mx{A} - \mx{B} \mx{K} =
-	\underbrace{
-		\begin{bmatrix}
-			\mu_1 \\
-			& \ddots \\
-			& & \mu_n
-		\end{bmatrix}
-	}_{\mx{M}}.
+	\begin{bmatrix}
+		\mu_1 \\
+		& \ddots \\
+		& & \mu_n
+	\end{bmatrix}
+	= \mx{M}.
 \]
-Sometimes it is possible to do \(\mx{K} = \mx{B}^{-1} (\mx{A} - \mx{K})\), but more often the system is overdetermined and we are free to choose some entries of \(\mx{K}\) (which is even easier).
+Sometimes it is possible to do \(\mx{K} = \mx{B}^{-1} (\mx{A} - \mx{M})\), but more often the system is overdetermined and we are free to choose some entries of \(\mx{K}\) (which is even easier).
 
 If the state space representation is in the controllable canonical form, and 
 \[
@@ -150,7 +149,7 @@ and in a state space model \(\mx{A}, \mx{B}, \mx{C}\) with \(\mx{D} = \vec{0}\) 
 
 \subsection{Observer}
 
-\begin{figure}[h]
+\begin{figure}
 	\centering
 	\resizebox{\linewidth}{!}{%
 		\input{figures/tikz/observer-full}%
@@ -161,4 +160,4 @@ and in a state space model \(\mx{A}, \mx{B}, \mx{C}\) with \(\mx{D} = \vec{0}\) 
 	}
 \end{figure}
 
-\todo{Skript p. 203.}
+Sometimes it is not possible to know some states of \(\vec{x}\) of a plant (system is not totally observable). The idea of the \emph{observer} is to create a new controller to estimate the state of the unknown variables from the output of the plant. \todo{Skript p. 203.}

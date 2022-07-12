@@ -7,7 +7,7 @@
 	\centering
 	\input{figures/tikz/discrete-design}
 	\caption{
-		Direct vs indirect design. In general \(G_{c,i}(z) \neq G_{c,d}(z)\).
+		Direct vs indirect design. \(G_{c,i}(z) \neq G_{c,d}(z)\).
 		\label{fig:direct-vs-indirect}
 	}
 \end{figure}
@@ -20,16 +20,11 @@ In discrete time the system works with sampled signals. The sampling time \(T\) 
 \]
 where \(\omega_r\) is the is the highest frequency component in the reference signal \(r(t)\).
 
-In practice sampling means using an analog to digital converter (ADC), but mathematically the sampling is done through a multiplication with a Dirac comb
-\[
-	\sum_k \delta(t - kT).
-\]
-
-The converse operation, which is done with a digital to analog converter (DAC), is represented in many ways depending on the type of reconstruction. The simplest reconstruction is the zero order hold (ZOH) reconstruction, which keeps the signal fixed at the value of the last digital sample until the new one comes.
+In practice sampling means using an analog to digital converter (ADC), but mathematically the sampling is done through a multiplication with a Dirac comb \(\sum_k \delta(t - kT)\). The converse operation, which is done with a digital to analog converter (DAC), is represented in many ways depending on the type of reconstruction. The simplest reconstruction is the zero order hold (ZOH) reconstruction, which keeps the signal fixed at the value of the last digital sample until the new one comes.
 
 \subsubsection{Choosing \(T\) Empirically}
 
-\todo{Stuff from skript p. 230, parameters from Takahashi et al.}
+\todo{See skript p. 220.}
 
 % \begin{figure}
 % 	\centering
@@ -53,6 +48,9 @@ The last one (Tustin) is the most popular. To obtain the discretized controller 
 \[
 	\hat{G}_c(z) = G_c \left(s = \frac{2}{T} \frac{z - 1}{z + 1}\right).
 \]
+
+% \subsection{PID Tuning}
+% \todo{Stuff from skript p. 230, parameters from Takahashi et al.}
 
 \subsection{ZOH Discretization (Direct Design)}
 

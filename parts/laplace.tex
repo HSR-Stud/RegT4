@@ -3,15 +3,12 @@
 
 \section{Laplace Transform}
 
-The Laplace transform of a function \(f\) is
-\[
-	F(s) = \laplace f(t) = \int_0^\infty f(T) \, e^{-st} \, dt,
-\]
-and in the other direction the inverse Laplace transform is
-\[
-	f(t) = \laplace^{-1} F(s) = \frac{1}{2\pi i}
+The Laplace transform of a function \(f\) and its inverse transform are
+\begin{align*}
+	F(s) &= \laplace f(t) = \int_0^\infty f(T) \, e^{-st} \, dt, \\
+	f(t) &= \laplace^{-1} F(s) = \frac{1}{2\pi i}
 		\lim_{T \to \infty} \oint_{\gamma -iT}^{\gamma +iT} F(s) \, e^{st} \, ds.
-\]
+\end{align*}
 The Laplace transform converts integration and differentiation problems into algebraic problems. Some important properties and transform pairs are listed in table \ref{tab:laplace}.
 
 \begin{table*}[t]
@@ -48,7 +45,7 @@ The Laplace transform converts integration and differentiation problems into alg
 		\bottomrule
 	\end{tabularx}
 	\caption{
-		Useful Laplace transform rules and pairs. All functions are assumed to be causal (multiplied with the unit step \(\varepsilon(t)\)).
+		Useful Laplace transform rules and pairs. All functions are assumed to be causal (multiplied with \(\varepsilon(t)\)).
 		\label{tab:laplace}
 	}
 \end{table*}
