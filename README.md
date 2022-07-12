@@ -1,6 +1,6 @@
-RegT4
-=====
+# RegT4 Zusammenfassung (EN)
 
-Regelungstechnik 4 bei Markus Kottmann 2008.
+Zusammenfassung der Vorlesung Regelungstechnik 4 Semester 2022 von Prof. Dr. M. Kottman an der Ostschweizer Fachhochschule.
 
-See CONTRIBUTORS.txt for author info and LICENSE.txt for licensing issues.
+## License
+See `LICENSE` file
