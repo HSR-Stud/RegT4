@@ -39,9 +39,9 @@ By hand, for a \(3 \times 3\) matrix, Sarrus' rule is probably the fastest metho
 					font = \itshape,
 				}
 			] {
-				a & b & c & |[gray]| a & |[gray]| b \\
-				d & e & f & |[gray]| d & |[gray]|   \\
-				g & h & i & |[gray]| g & |[gray]| h \\
+				a & b & c & a & b \\
+				d & e & f & d &   \\
+				g & h & i & g & h \\
 			};
 			\begin{scope}[
 					line width = 7pt, opacity = .2, line cap = round,
@@ -125,19 +125,41 @@ This matrix is then used for a change of bases into the eigenbasis of \(\mx{A}\)
 	\end{bmatrix}.
 \]
 
-\subsection{Jordan Normal Form}
+\subsection{Positive Definite}
 
-\todo{From Axler.}
+A Hermitian complex (or real symmetric) matrix \(\mx{A}\) is said to be \emph{positive definite} if the quadratic form \(\vec{x}^* \mx{A} \vec{x} > 0\) for all \(\vec{x} \neq \vec{0}\). If \(\vec{x}^* \mx{A} \vec{x} \leq 0\) then it is \emph{semi-definite}. If the quadratic form is smaller than 0 it is \emph{negative definite} or (semi-definite). Matrix definiteness can be controlled by using the eigenvalues \(\lambda_i\) because:
+\begin{itemize}
+	\item if all \(\lambda_i > 0\), then the matrix is positive definite,
+	\item if all \(\lambda_i \geq 0\) the matrix is positive semi-definite.
+\end{itemize}
+And the converse for negative definiteness. Further, definiteness can be checked using the determinants of the sub-matrices \(\mx{A}_{[ij,kl]}\) as follows: given a matrix
+\[
+	\mx{A} =
+	\begin{bmatrix}
+		\begin{tikzpicture}[
+				outer sep = 2pt,
+				inner sep = 2pt,
+			]
+			\matrix (m) [
+				matrix of nodes, row sep = 3pt, column sep = 5pt,
+				nodes = {
+					font = \itshape,
+				}
+			] {
+				a & b & c \\
+				d & e & f \\
+				g & h & i \\
+				% \(\vdots\) & \(\vdots\) & \(\vdots\) & \(\ddots\) \\
+			};
+			\fill[opacity = .2, yellow] (m-1-1.north west) rectangle (m-3-3.south east);
+			\fill[opacity = .2, orange] (m-1-1.north west) rectangle (m-2-2.south east);
+			\fill[opacity = .2, red] (m-1-1.north west) rectangle (m-1-1.south east);
+		\end{tikzpicture}
+	\end{bmatrix},
+\]
+If \(\det \mx{A}_{[11,11]} > 0\) (red), \(\det\mx{A}_{[11,22]} > 0\) (orange), \(\det\mx{A}_{[11,33]} > 0\) (yellow), etc. the matrix is positive definite.
 
-\subsection{Caley-Hamilton Theorem}
-
-\todo{From Ogata.}
-
-\subsection{Useful Matrices and Products}
-
-\paragraph{Quadratic Form}
-
-The quadratic product is an expression of the form \(\vec{x}^* \mx{Q} \vec{x}\). Let \(\vec{x} \in \mathbb{C}^{2\times 1}\) be a complex column vector and \(a, b, q\) be complex numbers:
+The quadratic form \(\vec{x}^* \mx{Q} \vec{x}\) for \(\vec{x} \in \mathbb{C}^{2\times 1}\) \(a, b, q\) as complex numbers is
 \[
 	\vec{x}^*
 	\underbrace{
@@ -151,12 +173,19 @@ The quadratic product is an expression of the form \(\vec{x}^* \mx{Q} \vec{x}\).
 \]
 If working only with real numbers:
 \[
-	\vec{x}^\mathsf{T} \mx{Q} \vec{x} = a x_1^2 + 2q x_1 x_2 + b x_2^2.
+	\vec{x}^\mathsf{T} \mx{Q} \vec{x} = a x_1^2 + 2q x_1 x_2 + b x_2^2
+	= \sum_{i,j}^{n^2} Q_{ij} \, x_i x_j.
 \]
-For bigger (real) \(n\) dimensional vectors:
-\[
-	\vec{x}^\mathsf{T} \mx{Q} \vec{x} = \sum_{i,j}^{n^2} Q_{ij} \, x_i x_j.
-\]
+
+\subsection{Jordan Normal Form}
+
+\todo{From Axler.}
+
+\subsection{Caley-Hamilton Theorem}
+
+\todo{From Ogata.}
+
+\subsection{Useful Matrices and Products}
 
 \paragraph{Column Row Product}
 

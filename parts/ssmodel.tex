@@ -168,12 +168,7 @@ To expand the previous result, in the more general case when
 \[
 	\dot{\vec{x}} = \mx{A} \vec{x} + \mx{B} \vec{u},
 \]
-a few steps that are the same as in the scalar case give the solution
-\[
-	\vec{x}(t) = e^{\mx{A} t} \vec{x}(0)
-		+ \int_0^t e^{\mx{A} (t - \tau)} \mx{B} \vec{u}(\tau) d\tau,
-\]
-which can also be written using the transition matrix as:
+a few steps that are the same as in the scalar case yield the solution
 \[
 	\vec{x}(t) = \mx{\Phi}(t) \vec{x}(0)
 		+ \int_0^t \mx{\Phi}(t - \tau) \mx{B} \vec{u}(\tau) d\tau.
@@ -337,9 +332,9 @@ In this representation the state variables are the \emph{eigenstates} of the sys
 	\frac{b_n c_n}{s - \lambda_{n-1}}.
 \]
 
-\subsubsection{Normal Jordan Form}
-
-\todo{From Ogata.}
+% TODO: Add JNF from Ogata
+% \subsubsection{Normal Jordan Form}
+% \todo{From Ogata.}
 
 \subsection{Similarity Transform}
 
@@ -437,16 +432,14 @@ When to a subsystem 1 a subsystem 2 is connected in the negative feedback path, 
 	\begin{bmatrix}
 		\mx{B}_1 \mx{K}_1 \\ \mx{B}_2 \mx{K}_2 \mx{D}_1
 	\end{bmatrix},
-	\\
-	\mx{C}' &:= 
+	\qquad
+	\mx{C}' := 
 	\begin{bmatrix}
 		\mx{K}_2 \mx{C}_1 &
 		-\mx{K} \mx{D}_1 \mx{C}_2
 	\end{bmatrix}
-	\\
-	\mx{D}' &:= \mx{K}_2 \mx{D}_1,
 \end{align*}
-where \(\mx{K}_1 = (\mx{I} - \mx{D}_2 \mx{D}_1)^{-1}\) and  \(\mx{K}_2 = (\mx{I} - \mx{D}_1 \mx{D}_2)^{-1}\). In the case of a positive feedback the minus signs become pluses.
+and \(\mx{D}' := \mx{K}_2 \mx{D}_1\), where \(\mx{K}_1 = (\mx{I} - \mx{D}_2 \mx{D}_1)^{-1}\) and  \(\mx{K}_2 = (\mx{I} - \mx{D}_1 \mx{D}_2)^{-1}\). In the case of a positive feedback the minus signs become pluses.
 
 \subsection{Create a State Space Model from a Transfer Function}
 

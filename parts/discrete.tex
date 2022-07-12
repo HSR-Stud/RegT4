@@ -120,7 +120,21 @@ by solving for \(G_c(z)\):
 
 \subsection{Discrete State Space}
 
-\todo{Stuff from skript p. 244.}
+The discrete state space model equations are
+\begin{align*}
+	\vec{x}(k + 1) &= \mx{A} \vec{x}(k) + \mx{B} \vec{u}(k), \\
+	\vec{y}(k) &= \mx{C} \vec{x}(k) + \mx{D} \vec{u}(k),
+\end{align*}
+and similarly to the Laplace domain solution there is a \emph{transfer matrix} in the \(z\)-domain:
+\[
+	\mx{G}(z) = \mx{C} (z\mx{I} - \mx{A})^{-1} \mx{B} + \mx{D}.
+\]
+
+Like in continuous time the eigenvalues of the \(\mx{A}\) matrix are the poles of the transfer function \(G(z)\), and thus determine the stability of the system. The observability and controllability can be checked with the same matrices as in continuous time: \(\mx{Q}_o\), \(\mx{Q}_c\) respectively. Because the system is a \emph{difference} equation (instead of \emph{differential} equation) future states can be computed recursively:
+\begin{align*}
+	\vec{x}(x) &= \mx{A} \vec{x}(n-1) + \mx{B} \vec{u} (n-1) \\
+		&= \mx{A}^n \vec{x}(0) + \sum_k^{n-1} \mx{A}^k \mx{B} \vec{u}(n - 1 - k).
+\end{align*}
 
 \subsection{Deadbeat Controller Design}
 \todo{Stuff from skript p. 256.}

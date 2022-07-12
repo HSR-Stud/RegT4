@@ -64,7 +64,7 @@ Sometimes it is possible to do \(\mx{K} = \mx{B}^{-1} (\mx{A} - \mx{K})\), but m
 If the state space representation is in the controllable canonical form, and 
 \[
 	\mx{K} = \begin{bmatrix} k_1 & k_2 & \ldots & k_n \end{bmatrix}
-\]
+\] \\
 since \(\tilde{\mx{A}} = \mx{A} - \mx{B}\mx{K} = \)
 {\small
 	\[
@@ -132,6 +132,17 @@ It is possible to show that the resulting optimal gain matrix is
 \[
 	\mx{K} = \mx{R}^{-1} \mx{B}^* \mx{S}.
 \]
+The LQR optimization problem can also be described in terms of the output
+\[
+	J = \int_0^\infty \left(
+		\vec{y}^* \mx{V} \vec{y} + \vec{u}^* \mx{R} \vec{u}
+	\right) \, dt,
+\]
+and in a state space model \(\mx{A}, \mx{B}, \mx{C}\) with \(\mx{D} = \vec{0}\) can be rewritten using \(\vec{x}\) as follows:
+\(
+	\vec{y}^* \mx{V} \vec{y} =
+	\vec{x}^* \mx{C}^* \mx{V} \mx{C} \vec{x}.
+\)
 
 \subsection{PI-Control}
 
@@ -139,9 +150,9 @@ It is possible to show that the resulting optimal gain matrix is
 
 \subsection{Observer}
 
-\begin{figure}
+\begin{figure}[h]
 	\centering
-	\resizebox{.9\linewidth}{!}{%
+	\resizebox{\linewidth}{!}{%
 		\input{figures/tikz/observer-full}%
 	}
 	\caption{

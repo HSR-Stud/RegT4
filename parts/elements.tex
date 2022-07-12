@@ -664,7 +664,7 @@
 
 				\midrule
 
-				\texttt{SYS = ss(A,B,C,D);\newline SYS = ss(A,B,C,D,TS);} & Create a continuous time state space model from the matrices \texttt{A} \texttt{B} \texttt{C} and \texttt{D}. Create a discrete time model with sampling time \texttt{TS}. \\
+				\texttt{SYS = ss(A,B,C,D);\newline SYS = ss(A,B,C,D,"InputDelay",T);\newline SYS = ss(A,B,C,D,TS);} & Create a continuous time state space model from the matrices \texttt{A} \texttt{B} \texttt{C} and \texttt{D}. Add a delay of \(e^{-sT}\). Create a discrete time model with sampling time \texttt{TS}. \\
 
 				\texttt{CO = ctrb(A,B);\newline CO = ctrb(SYS);} & Compute the controllability matrix of a system from the matrices \texttt{A} and \texttt{B} or from the system object. \\
 
@@ -681,6 +681,10 @@
 				\texttt{K = place(A,B,P);} & Compute a state feedback matrix such that the eigenvalues of \(\mx{A} - \mx{B}\mx{K}\) are those specified in the vector \texttt{P}. \\
 
 				\texttt{[K,S,CLP] = lqr(SYS,Q,R,N);\newline [K,S,CLP] = lqr(A,B,C,D,Q,R,N);\newline [K,S,CLP] = dlqr(A,B,Q,R,N)} & Calculates the optimal gain matrix \texttt{K} for the continuous or discrete state-space model \texttt{SYS}. \\
+
+				\midrule
+
+				\texttt{[N,D] = pade(T,N);\newline SYSX = pade(SYS,N);} & Returns a \(N\)th order Padé approximation of the continous time delay \(e^{-sT}\). Returns delay free approximation of a system \texttt{SYS} with a delay. \\
 
 				\bottomrule
 			\end{tabularx}
