@@ -224,7 +224,9 @@ In terms of the transfer function: if cancellation occurs in the transfer functi
 
 \subsection{Stability} \label{sec:stability}
 
-A state space model system is stable is the \(\mx{A}\) matrix is positive definite, which means that the real part of all eigenvalues \(\Re{\lambda_i} > 0\). Another way to determine if \(\mx{A}\) is positive definite is to test whether the quadratic expression \(\vec{x}^* \mx{A} \vec{x} > 0\) for all \(\vec{x} \neq \vec{0}\).
+A state space model system is stable is the \(\mx{A}\) matrix is positive definite, which means that the real part of all eigenvalues \(\Re{\lambda_i} < 0\).
+
+% Another way to determine if \(\mx{A}\) is positive definite is to test whether the quadratic expression \(\vec{x}^* \mx{A} \vec{x} > 0\) for all \(\vec{x} \neq \vec{0}\).
 
 \subsection{Equivalent Representations}
 
@@ -265,7 +267,7 @@ This form (German: \textsl{Regelungsnormalform}) is important in discussing the 
 	\)
 }
 And the output is
-\[
+\(
 	y =
 	\begin{bmatrix}
 		b_0 & \dots & b_{n-1}
@@ -273,7 +275,7 @@ And the output is
 	\vec{x}
 	+ d u
 	.
-\]
+\)
 
 \subsubsection{Observable Canonical Form}
 
@@ -350,7 +352,7 @@ Given an arbitrary regular matrix \(\mx{P}\), the state space in \(\vec{x}\) can
 
 \subsection{Subsystem Aggregation}
 
-\subsubsection{Series}
+\paragraph{Series}
 
 When after a subsystem 1 a subsystem 2 is connected in series the model of the entire path is
 \begin{align*}
@@ -383,7 +385,7 @@ When after a subsystem 1 a subsystem 2 is connected in series the model of the e
 	\mx{D}_2 \mx{D}_1 \vec{u}.
 \end{align*}
 
-\subsubsection{Parallel}
+\paragraph{Parallel}
 
 When a subsystem 1 and a subsystem 2 are connected in parallel, the model of the entire system is
 \begin{align*}
@@ -416,7 +418,7 @@ When a subsystem 1 and a subsystem 2 are connected in parallel, the model of the
 	(\mx{D}_2 + \mx{D}_1) \vec{u}.
 \end{align*}
 
-\subsubsection{Feedback}
+\paragraph{Feedback}
 
 When to a subsystem 1 a subsystem 2 is connected in the negative feedback path, the matrices of the entire system are
 \begin{align*}

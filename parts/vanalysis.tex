@@ -9,10 +9,10 @@ The \emph{gradient} of a function \(f(\vec{x}), \vec{x}\in\mathbb{R}^m\) is a co
 \[
 \grad f (\vec{x}) = \sum_{i=1}^m \partial_{x_i} f(\vec{x}) \vec{e}_i
 	= \begin{pmatrix}
-		\partial_{x_1} f(\vec{x}) \\
-		\vdots \\
-		\partial_{x_m} f(\vec{x}) \\
-	\end{pmatrix}
+		\partial_{x_1} f(\vec{x}) &
+		\cdots &
+		\partial_{x_m} f(\vec{x})
+	\end{pmatrix}^\mathsf{T}.
 \]
 The gradient vector always points towards \emph{the direction of steepest ascent}, and thus is always perpendicular to contour lines.
 
@@ -26,8 +26,8 @@ The \emph{Jacobian} \(\mx{J}_f\) (sometimes written as \(\frac{\partial \vec{f}}
 			\partial_{x_1} f_n & \cdots & \partial_{x_m} f_n \\
 		\end{pmatrix}
 	= \begin{pmatrix}
-			(\grad f_1)^t \\
+			(\grad f_1)^\mathsf{T} \\
 			\vdots \\
-			(\grad f_m)^t \\
+			(\grad f_m)^\mathsf{T} \\
 		\end{pmatrix}
 \]
