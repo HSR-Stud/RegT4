@@ -121,16 +121,21 @@ which when substituted into the previous expression gives
 		\, dt}_{\mx{S}(\mx{K})}
 	\, \vec{x}(0).
 \]
-The minimization problem is completed by computing
+The minimization problem is completed by setting the derivative to zero
 \[
 	\text{minimize } J \iff
 	0 = \frac{\partial J}{\partial K_{ij}} =
-	\vec{x}^*(0) \frac{\partial \mx{S}}{\partial K_{ij}} \vec{x}(0).
+	\vec{x}^*(0) \frac{\partial \mx{S}}{\partial K_{ij}} \vec{x}(0),
 \]
-It is possible to show that the resulting optimal gain matrix is
+which results in a quadratic equation known as the \emph{algebraic Riccati equation} (ARE)
+\[
+	\mx{A}^* \mx{S} + \mx{S} \mx{A} - \mx{S} \mx{B} \mx{R}^{-1} \mx{B}^* \mx{S} = -\mx{Q}.
+\]
+Then the resulting optimal gain matrix is
 \(
-	\mx{K} = \mx{R}^{-1} \mx{B}^* \mx{S}.
+	\mx{K} = \mx{R}^{-1} \mx{B}^* \mx{S}^\star,
 \)
+where $\mx{S}^\star$ is a positive definite solution of the ARE.
 The LQR optimization problem can also be described in terms of the output
 \[
 	J = \int_0^\infty \left(
