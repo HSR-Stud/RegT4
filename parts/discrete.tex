@@ -20,7 +20,7 @@ In discrete time the system works with sampled signals. The sampling time \(T\) 
 \]
 where \(\omega_r\) is the is the highest frequency component in the reference signal \(r(t)\).
 
-In practice sampling means using an analog to digital converter (ADC), but mathematically the sampling is done through a multiplication with a Dirac comb \(\sum_k \delta(t - kT)\). The converse operation, which is done with a digital to analog converter (DAC), is represented in many ways depending on the type of reconstruction. The simplest reconstruction is the zero order hold (ZOH) reconstruction, which keeps the signal fixed at the value of the last digital sample until the new one comes.
+In practice sampling means using an analog to digital converter (ADC), but mathematically the sampling is done through a multiplication with a Dirac comb \(\sum_k \delta(t - kT)\). The converse operation, which is done with a digital to analog converter (DAC), is represented in many ways depending on the type of reconstruction. The simplest reconstruction is the zero order hold (ZOH) reconstruction, which keeps the signal fixed at the value of the last digital sample until the new one comes (piecewise constant function).
 
 \subsubsection{Choosing \(T\) Empirically}
 

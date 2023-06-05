@@ -40,7 +40,7 @@ where \(
 
 \subsection{Linearization of non LTI systems}
 
-In general dynamics are not LTI systems, however it is possible to create linear approximation of complex dynamics around a \emph{set point} \((\vec{x}_0, \vec{u}_0)\), if it is also a fixed point (that means \(\vec{f}(\vec{x}_0, \vec{u}_0) = \vec{0}\) and \(\vec{g}(\vec{x}_0, \vec{u}_0) = \vec{y}_0\)), by computing the four Jacobian matrices:
+In general dynamics are not LTI systems, however it is possible to create linear approximation of complex dynamics around a \emph{set point} \((\vec{x}_0, \vec{u}_0)\), if it is also a stationary point (that means \(\vec{f}(\vec{x}_0, \vec{u}_0) = \vec{0}\) and \(\vec{g}(\vec{x}_0, \vec{u}_0) = \vec{y}_0\)), by computing the four Jacobian matrices:
 \begin{align*}
 	\mx{A} &= \frac{\partial\vec{f}}{\partial\vec{x}} (\vec{x}_0, \vec{u}_0), &
 	\mx{B} &= \frac{\partial\vec{f}}{\partial\vec{u}} (\vec{x}_0, \vec{u}_0), \\
@@ -114,7 +114,7 @@ is called the \emph{transition matrix}, since it describes how the initial condi
 	\dot{\mx{\Phi}}(t) = \mx{A}\mx{\Phi}(t)
 	.
 \end{gather*}
-A noteworthy result from the last property is that
+An interesting result from the last property is that
 \[
 	\mx{A} = \dot{\mx{\Phi}}(t) \mx{\Phi}^{-1}(t)
 	= \dot{\mx{\Phi}}(t) \mx{\Phi}(-t).
@@ -224,7 +224,7 @@ In terms of the transfer function: if cancellation occurs in the transfer functi
 
 \subsection{Stability} \label{sec:stability}
 
-A state space model system is stable is the \(\mx{A}\) matrix is positive definite, which means that the real part of all eigenvalues \(\Re{\lambda_i} < 0\).
+A state space model system is stable is the \(\mx{A}\) matrix is negative definite, which means that the real part of all eigenvalues \(\Re{\lambda_i} < 0\).
 
 % Another way to determine if \(\mx{A}\) is positive definite is to test whether the quadratic expression \(\vec{x}^* \mx{A} \vec{x} > 0\) for all \(\vec{x} \neq \vec{0}\).
 
@@ -340,7 +340,7 @@ In this representation the state variables are the \emph{eigenstates} of the sys
 
 \subsection{Similarity Transform}
 
-In the previous section there were many representation that are practical to use, but in fact there is nothing special about them. In fact, the state space can be transformed into an infinite number of other equivalent representations.
+In the previous section there were many representation that are practical to use, but there is nothing special about them. In fact, the state space can be transformed into an infinite number of other equivalent representations.
 
 Given an arbitrary regular matrix \(\mx{P}\), the state space in \(\vec{x}\) can be brought into a new set of state variables \(\vec{x}' := \mx{P} \vec{x}\) by appropriately transforming the matrices as follows:
 \begin{align*}
